@@ -1,0 +1,65 @@
+[
+  {
+    "id": "resilient_lungs",
+    "name": "Pulmones Curados",
+    "description": "Acostumbrado a la ceniza de altura. Reduce el estrés respiratorio un 35% en tormentas.",
+    "type": "positive",
+    "bonus": { "respiratory_defense": 0.35 }
+  },
+  {
+    "id": "mechanic_savant",
+    "name": "Sabio Mecánico",
+    "description": "Repara y mantiene purificadores de aire gastando un 50% menos de materiales.",
+    "type": "positive",
+    "bonus": { "workshop_efficiency": 0.5 }
+  },
+  {
+    "id": "botanist",
+    "name": "Botánico Andino",
+    "description": "Mejora el rendimiento de cultivos hidropónicos en el invernadero un 40%.",
+    "type": "positive",
+    "bonus": { "food_production": 0.4 }
+  },
+  {
+    "id": "medic_veteran",
+    "name": "Médico Rural",
+    "description": "Trata quemaduras de ceniza e infecciones usando la mitad de suministros médicos.",
+    "type": "positive",
+    "bonus": { "clinic_heal_efficiency": 0.5 }
+  },
+  {
+    "id": "mountain_scout",
+    "name": "Rastreador de Quebradas",
+    "description": "Encuentra rutas seguras evitando deslizamientos y encuentra un 30% más de botín en expediciones.",
+    "type": "positive",
+    "bonus": { "expedition_loot": 0.3, "landslide_dodge": 0.4 }
+  },
+  {
+    "id": "diplomatic_voice",
+    "name": "Voz Conciliadora",
+    "description": "Reduce las tensiones entre facciones al resolver disputas en el Libro de Cuentas.",
+    "type": "positive",
+    "bonus": { "faction_trust_bonus": 10 }
+  },
+  {
+    "id": "asthmatic",
+    "name": "Asma Severa",
+    "description": "Sufre el doble de estrés respiratorio si el filtro de aire cae bajo el 50% de integridad.",
+    "type": "negative",
+    "bonus": { "respiratory_vulnerability": 1.0 }
+  },
+  {
+    "id": "claustrophobic",
+    "name": "Claustrofobia",
+    "description": "Aumenta la fatiga mental y pierde moral rápidamente si pasa más de 2 días seguidos encerrado.",
+    "type": "negative",
+    "bonus": { "shelter_cabin_fever": 0.5 }
+  },
+  {
+    "id": "reckless_brave",
+    "name": "Audacia Temeraria",
+    "description": "Mayor probabilidad de rescates heroicos, pero un 25% más de riesgo de lesiones graves en expediciones.",
+    "type": "neutral",
+    "bonus": { "heroic_chance": 0.3, "injury_risk": 0.25 }
+  }
+]

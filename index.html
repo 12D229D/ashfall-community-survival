@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashfall Haven — Supervivencia y Gestión de Comunidad</title>
+  <meta name="description" content="Juego de supervivencia y gestión de comunidad en un refugio andino durante una erupción volcánica prolongada. Lidera a 8 habitantes con muerte permanente y libro de cuentas.">
+  
+  <!-- Google Fonts: Outfit, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <!-- Barra de Navegación y Control de Tiempo -->
+  <header class="top-navbar">
+    <div class="brand-zone">
+      <span class="brand-icon">🌋</span>
+      <h1 class="game-title">Ashfall Haven: Refugio Volcánico</h1>
+    </div>
+
+    <div class="cycle-controls">
+      <div class="time-display">
+        <span id="hudDay" class="day-badge">Día 1</span>
+        <span id="hudHour" class="hour-badge">08:00</span>
+      </div>
+      <button id="btnAdvanceTime" class="btn-tick" title="Avanzar 3 horas en la simulación">
+        ⏳ Avanzar Turno (+3h)
+      </button>
+    </div>
+  </header>
+
+  <!-- HUD de Suministros Vitales -->
+  <section class="supplies-hud" aria-label="Suministros del Refugio">
+    <div class="supply-pill">
+      <span class="supply-icon">🍞</span>
+      <div class="supply-info">
+        <span class="supply-label">Comida</span>
+        <span id="hudFood" class="supply-value">40</span>
+      </div>
+    </div>
+
+    <div class="supply-pill">
+      <span class="supply-icon">💧</span>
+      <div class="supply-info">
+        <span class="supply-label">Agua</span>
+        <span id="hudWater" class="supply-value">55L</span>
+      </div>
+    </div>
+
+    <div class="supply-pill">
+      <span class="supply-icon">💉</span>
+      <div class="supply-info">
+        <span class="supply-label">Medicina</span>
+        <span id="hudMeds" class="supply-value">12</span>
+      </div>
+    </div>
+
+    <div class="supply-pill">
+      <span class="supply-icon">🛡️</span>
+      <div class="supply-info">
+        <span class="supply-label">Filtros</span>
+        <span id="hudFilters" class="supply-value">6</span>
+      </div>
+    </div>
+
+    <div class="supply-pill">
+      <span class="supply-icon">⛽</span>
+      <div class="supply-info">
+        <span class="supply-label">Combustible</span>
+        <span id="hudFuel" class="supply-value">25U</span>
+      </div>
+    </div>
+
+    <div class="supply-pill">
+      <span class="supply-icon">🔩</span>
+      <div class="supply-info">
+        <span class="supply-label">Materiales</span>
+        <span id="hudMaterials" class="supply-value">30</span>
+      </div>
+    </div>
+
+    <div class="supply-pill alert">
+      <span class="supply-icon">💨</span>
+      <div class="supply-info">
+        <span class="supply-label">Uso de Filtro</span>
+        <span id="hudFilterWear" class="supply-value">12%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuerpo Principal: Grid de 3 Columnas -->
+  <main class="game-viewport">
+    
+    <!-- Columna Izquierda: Roster de 8 Habitantes -->
+    <aside class="panel-roster" aria-label="Habitantes del Refugio">
+      <div class="panel-header">
+        <h2>👥 Comunidad (8 Habitantes)</h2>
+      </div>
+      <div id="rosterList" class="survivor-list">
+        <!-- Generado dinámicamente por rosterSwitch.js -->
+      </div>
+    </aside>
+
+    <!-- Columna Central: Vista de Refugio 2.5D y Pestañas -->
+    <section class="panel-center" aria-label="Área de Acción y Módulos">
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-view="bunker">🏢 Búnker 2.5D</button>
+        <button class="tab-btn" data-view="expedition">🧭 Planificador de Expedición</button>
+        <button class="tab-btn" data-view="ledger">⚖️ Libro de Cuentas</button>
+      </nav>
+
+      <!-- Vista 1: Corte Transversal del Búnker Canvas -->
+      <div id="shelterCanvasWrapper">
+        <div class="canvas-container">
+          <canvas id="shelterCanvas"></canvas>
+          <div class="canvas-overlay-info">
+            <span>🌋 Fase de Ceniza:</span>
+            <strong id="canvasAshBadge">Ceniza Leve</strong>
+          </div>
+        </div>
+
+        <div class="shelter-quick-actions">
+          <span style="font-size: 0.75rem; color: var(--text-dim); align-self: center;">Mantenimiento Rápido:</span>
+          <button id="btnReplaceFilter" class="btn-action-small">🔄 Reemplazar Filtro (Usa 1 Repuesto)</button>
+          <button id="btnCraftFilter" class="btn-action-small">🛠️ Forjar Filtro en Taller (10 Mat + 4 Comb)</button>
+        </div>
+      </div>
+
+      <!-- Vista 2: Expediciones -->
+      <div id="expeditionView" class="expedition-view" style="display: none;">
+        <div style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
+          <h3 style="font-size: 1.1rem; font-family: var(--font-heading);">Rutas de Exploración y Búsqueda Exterior</h3>
+          <p id="activeSurvivorBanner" style="font-size: 0.8rem; color: var(--lava-orange); font-weight: 600;">
+            Perspectiva: Carlos Huanaco (Guía de Alta Montaña)
+          </p>
+        </div>
+        <div id="sectorCardsGrid" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          <!-- Generado dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Vista 3: Libro de Cuentas y Facciones -->
+      <div id="ledgerView" style="display: none;">
+        <div id="ledgerContainer">
+          <!-- Generado dinámicamente por ledgerPanel.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Columna Derecha: Pronóstico Volcánico y Crónicas -->
+    <aside class="panel-right" aria-label="Pronóstico y Registro Histórico">
+      <div class="sub-panel">
+        <h3>🌋 Pronóstico Volcánico (3 Días)</h3>
+        <div id="forecastList" class="forecast-days-grid">
+          <!-- Renderizado dinámicamente -->
+        </div>
+      </div>
+
+      <div class="sub-panel" style="flex: 1; display: flex; flex-direction: column;">
+        <h3>📜 Crónicas del Refugio</h3>
+        <div id="chronicleLog" class="chronicles-log">
+          <!-- Mensajes dinámicos de eventos, expediciones y muertes permanentes -->
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Script Principal con ES Modules -->
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

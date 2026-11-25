@@ -1,0 +1,82 @@
+[
+  {
+    "id": "event_sulfur_leak",
+    "title": "Fisura con Gases de Azufre",
+    "description": "Una sacudida volcánica ha abierto una fisura cerca del conducto de ventilación este. El olor a azufre invade los dormitorios.",
+    "options": [
+      {
+        "text": "Sellar con resina y consumir 5 materiales y 1 filtro.",
+        "outcome": {
+          "materials": -5,
+          "air_filters": -1,
+          "civilians_trust": 10,
+          "technicians_trust": 5,
+          "log": "Los técnicos sellaron la fisura antes de que los gases alcanzaran concentraciones letales."
+        }
+      },
+      {
+        "text": "Evacuar el ala este y sobrecargar el extractor principal (peligro de desgaste).",
+        "outcome": {
+          "filter_wear_percent": 30,
+          "civilians_trust": -10,
+          "scouts_trust": 5,
+          "log": "El extractor vibró con fuerza disipando el gas, pero el filtro sufrió un daño severo."
+        }
+      }
+    ]
+  },
+  {
+    "id": "event_refugee_caravan",
+    "title": "Sobrevivientes en la Esclusa",
+    "description": "Una familia de 3 personas de la vereda alta golpea la compuerta exterior. Sus ropas están cubiertas de ceniza gris y tosen sangre.",
+    "options": [
+      {
+        "text": "Acogerlos: Compartir 6 raciones de comida, 5 de agua y 2 medicinas.",
+        "outcome": {
+          "food_rations": -6,
+          "water_liters": -5,
+          "medical_supplies": -2,
+          "civilians_trust": 15,
+          "technicians_trust": -10,
+          "log": "La comunidad celebró la compasión, aunque los técnicos advierten sobre el racionamiento extremo."
+        }
+      },
+      {
+        "text": "Entregarles una máscara y racionamiento mínimo sin dejarlos entrar.",
+        "outcome": {
+          "food_rations": -2,
+          "air_filters": -1,
+          "civilians_trust": -15,
+          "technicians_trust": 10,
+          "scouts_trust": 5,
+          "log": "Se les dio provisiones de marcha. La compuerta se cerró con pesadumbre."
+        }
+      }
+    ]
+  },
+  {
+    "id": "event_food_rationing",
+    "title": "Disputa por el Almacén de Granos",
+    "description": "Se detectó humedad ácida en uno de los silos. Si no se recorta la ración diaria, las reservas se agotarán antes de la próxima cosecha.",
+    "options": [
+      {
+        "text": "Racionamiento estricto a media porción para todos.",
+        "outcome": {
+          "hunger_all": 15,
+          "civilians_trust": -10,
+          "technicians_trust": 15,
+          "log": "Los platos se sirvieron reducidos. El silencio en el comedor fue denso."
+        }
+      },
+      {
+        "text": "Mantener porciones normales y enviar una expedición urgente a los silos abandonados.",
+        "outcome": {
+          "scouts_trust": 15,
+          "civilians_trust": 10,
+          "technicians_trust": -10,
+          "log": "Se mantuvo el espíritu en alto, pero la presión recae ahora sobre los exploradores."
+        }
+      }
+    ]
+  }
+]

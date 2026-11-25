@@ -1,0 +1,680 @@
+/* ==========================================================================
+   Ashfall Haven — Sistema de Estilos y Tokens de Diseño HSL
+   Paleta Volcánica: Ceniza apagada, Magma/Alerta y Verde Esperanza
+   ========================================================================== */
+
+:root {
+  /* Paleta Base HSL */
+  --bg-dark: hsl(220, 18%, 8%);
+  --bg-panel: hsl(220, 16%, 12%);
+  --bg-card: hsl(220, 15%, 16%);
+  --bg-card-hover: hsl(220, 15%, 20%);
+  --border-subtle: hsla(220, 15%, 30%, 0.4);
+  --border-highlight: hsla(25, 95%, 55%, 0.6);
+
+  /* Acentos Temáticos */
+  --ash-dust: hsl(215, 16%, 65%);
+  --lava-orange: hsl(24, 95%, 53%);
+  --lava-glow: hsla(24, 95%, 53%, 0.25);
+  --danger-red: hsl(0, 84%, 60%);
+  --hope-green: hsl(150, 70%, 45%);
+  --cyan-vital: hsl(190, 80%, 50%);
+  --text-main: hsl(210, 25%, 95%);
+  --text-muted: hsl(215, 15%, 65%);
+  --text-dim: hsl(215, 15%, 45%);
+
+  /* Tipografías */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Glassmorphism */
+  --glass-bg: hsla(220, 16%, 12%, 0.85);
+  --glass-border: 1px solid hsla(0, 0%, 100%, 0.08);
+  --glass-blur: blur(12px);
+  --shadow-elevation: 0 10px 30px -10px hsla(0, 0%, 0%, 0.6);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(ellipse at 80% 0%, hsla(24, 85%, 25%, 0.15), transparent 50%),
+    radial-gradient(ellipse at 10% 100%, hsla(220, 30%, 15%, 0.5), transparent 60%);
+}
+
+/* Header & Barra Superior */
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.brand-zone {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-icon {
+  font-size: 1.75rem;
+  animation: pulse-ember 3s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-ember {
+  0% { transform: scale(1); filter: drop-shadow(0 0 4px var(--lava-orange)); }
+  100% { transform: scale(1.08); filter: drop-shadow(0 0 12px var(--lava-orange)); }
+}
+
+h1.game-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, #ffffff 40%, var(--lava-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cycle-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.time-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  background: hsl(220, 20%, 10%);
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.day-badge {
+  color: var(--lava-orange);
+  font-weight: 700;
+}
+
+.hour-badge {
+  color: var(--ash-dust);
+  font-size: 0.9rem;
+}
+
+.btn-tick {
+  background: linear-gradient(135deg, hsl(25, 95%, 48%), hsl(15, 90%, 40%));
+  color: #fff;
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 0.45rem 1.15rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--lava-glow);
+  transition: all 0.2s ease;
+}
+
+.btn-tick:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.15);
+  box-shadow: 0 6px 18px hsla(24, 95%, 53%, 0.4);
+}
+
+/* HUD Superior de Suministros */
+.supplies-hud {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: hsla(220, 20%, 10%, 0.8);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.supply-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-card);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.supply-icon {
+  font-size: 1.25rem;
+}
+
+.supply-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.supply-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+
+.supply-value {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.supply-pill.alert .supply-value {
+  color: var(--danger-red);
+}
+
+/* Layout Principal de 3 Columnas */
+.game-viewport {
+  display: grid;
+  grid-template-columns: 320px 1fr 340px;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  min-height: calc(100vh - 120px);
+}
+
+@media (max-width: 1200px) {
+  .game-viewport {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Columna Izquierda: Roster de Habitantes */
+.panel-roster {
+  background: var(--bg-panel);
+  border-radius: 10px;
+  border: var(--glass-border);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+}
+
+.panel-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: var(--text-main);
+}
+
+.survivor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-height: 75vh;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.survivor-list::-webkit-scrollbar {
+  width: 5px;
+}
+.survivor-list::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+
+.survivor-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.survivor-card:hover {
+  background: var(--bg-card-hover);
+  border-color: hsla(25, 95%, 55%, 0.4);
+}
+
+.survivor-card.active {
+  border-color: var(--lava-orange);
+  box-shadow: 0 0 12px var(--lava-glow);
+}
+
+.survivor-card.is-dead {
+  opacity: 0.5;
+  filter: grayscale(0.85);
+  border-style: dashed;
+}
+
+.survivor-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.avatar {
+  font-size: 1.5rem;
+}
+
+.name-box h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.name-box .role {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.status-pill {
+  margin-left: auto;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.status-ok { background: hsla(150, 70%, 45%, 0.2); color: var(--hope-green); }
+.status-warning { background: hsla(35, 90%, 50%, 0.2); color: #f59e0b; }
+.status-danger { background: hsla(0, 84%, 60%, 0.2); color: var(--danger-red); }
+.status-info { background: hsla(190, 80%, 50%, 0.2); color: var(--cyan-vital); }
+.status-dead { background: hsla(0, 0%, 40%, 0.2); color: var(--text-dim); }
+
+.survivor-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  gap: 0.4rem;
+}
+
+.stat-bar .lbl {
+  width: 55px;
+  color: var(--text-dim);
+}
+
+.stat-bar .bar-track {
+  flex: 1;
+  height: 5px;
+  background: hsla(0, 0%, 0%, 0.4);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar-fill.health { background: var(--hope-green); }
+.bar-fill.hunger { background: #f59e0b; }
+.bar-fill.lungs { background: var(--lava-orange); }
+
+.survivor-job-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.job-lbl {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.job-select {
+  flex: 1;
+  background: hsl(220, 20%, 10%);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.death-epitaph {
+  margin-top: 0.4rem;
+  font-size: 0.68rem;
+  color: var(--danger-red);
+  font-style: italic;
+}
+
+/* Columna Central: Escenario 2.5D y Navegación de Pestañas */
+.panel-center {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+  background: hsla(220, 15%, 25%, 0.3);
+}
+
+.tab-btn.active {
+  color: #fff;
+  background: hsla(25, 95%, 55%, 0.25);
+  border: 1px solid var(--border-highlight);
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  border: var(--glass-border);
+  box-shadow: var(--shadow-elevation);
+}
+
+#shelterCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.canvas-overlay-info {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: hsla(220, 20%, 8%, 0.85);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Vista de Expediciones y Rutas */
+.expedition-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.sector-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sector-card:hover {
+  border-color: var(--lava-orange);
+}
+
+.sector-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.sector-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sector-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ash-dust);
+  margin-top: 0.25rem;
+}
+
+.btn-launch-expedition {
+  margin-top: 0.5rem;
+  background: hsla(24, 95%, 53%, 0.2);
+  border: 1px solid var(--lava-orange);
+  color: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-launch-expedition:hover {
+  background: var(--lava-orange);
+}
+
+/* Columna Derecha: Pronóstico y Crónicas */
+.panel-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.sub-panel {
+  background: var(--bg-panel);
+  border-radius: 10px;
+  border: var(--glass-border);
+  padding: 0.85rem;
+}
+
+.sub-panel h3 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  margin-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.35rem;
+}
+
+.forecast-days-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.forecast-card {
+  background: var(--bg-card);
+  border-radius: 6px;
+  padding: 0.5rem 0.65rem;
+  border-left: 3px solid var(--ash-dust);
+  font-size: 0.75rem;
+}
+
+.forecast-card.f-leve { border-left-color: var(--ash-dust); }
+.forecast-card.f-moderada { border-left-color: var(--lava-orange); }
+.forecast-card.f-tormenta { border-left-color: var(--danger-red); }
+
+.forecast-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.forecast-phase-name {
+  color: var(--lava-orange);
+}
+
+.chronicles-log {
+  max-height: 240px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+}
+
+.log-entry {
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  background: hsla(220, 15%, 15%, 0.6);
+  border-left: 2px solid var(--border-subtle);
+}
+
+.log-entry.incident { border-left-color: var(--danger-red); }
+.log-entry.loot { border-left-color: var(--hope-green); }
+.log-entry.dilemma { border-left-color: var(--cyan-vital); }
+
+/* Dilemas y Libro de Cuentas UI */
+.active-dilemma-card {
+  background: linear-gradient(145deg, hsla(0, 70%, 25%, 0.3), hsla(220, 20%, 15%, 0.9));
+  border: 1px solid var(--danger-red);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.dilemma-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--danger-red);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.dilemma-title {
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.dilemma-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+}
+
+.dilemma-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.btn-choice {
+  text-align: left;
+  background: hsla(220, 20%, 20%, 0.8);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 0.45rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-choice:hover {
+  background: hsla(25, 95%, 53%, 0.3);
+  border-color: var(--lava-orange);
+}
+
+/* Facciones Grid */
+.factions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.faction-card {
+  background: var(--bg-card);
+  border-radius: 6px;
+  padding: 0.6rem;
+  border: 1px solid var(--border-subtle);
+}
+
+.faction-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fac-icon { font-size: 1.2rem; }
+.fac-desc { font-size: 0.68rem; color: var(--text-dim); display: block; }
+
+.fac-trust-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  margin: 0.3rem 0 0.2rem;
+}
+
+.fac-meter-track {
+  height: 5px;
+  background: #000;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.fac-meter-fill.civilians { background: var(--cyan-vital); }
+.fac-meter-fill.technicians { background: var(--lava-orange); }
+.fac-meter-fill.scouts { background: var(--hope-green); }
+
+/* Quick Action Toolbar */
+.shelter-quick-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.btn-action-small {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-action-small:hover {
+  border-color: var(--lava-orange);
+  background: var(--bg-card-hover);
+}

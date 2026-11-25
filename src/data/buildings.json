@@ -1,0 +1,66 @@
+[
+  {
+    "id": "purifier",
+    "name": "Purificador de Aire Central",
+    "icon": "💨",
+    "category": "vital",
+    "description": "Filtra partículas volcánicas finas y gases de azufre del interior del búnker. Si se satura, todos los habitantes sufren asfixia.",
+    "level": 1,
+    "maxLevel": 3,
+    "upgradeCost": { "materials": 25, "fuel": 10 },
+    "workersMax": 2,
+    "effects": {
+      "level1": "Filtra hasta ceniza moderada; consumo normal de filtros.",
+      "level2": "Sistema ciclónico: reduce el desgaste de filtros un 30%.",
+      "level3": "Recirculador hermético: soporta tormentas piroclásticas sin fuga de gases."
+    }
+  },
+  {
+    "id": "greenhouse",
+    "name": "Invernadero Hidropónico",
+    "icon": "🌱",
+    "category": "production",
+    "description": "Cultiva papas nativas, tubérculos y quinua bajo luces UV protegidas de la lluvia ácida.",
+    "level": 1,
+    "maxLevel": 3,
+    "upgradeCost": { "materials": 20, "water": 15 },
+    "workersMax": 2,
+    "effects": {
+      "level1": "Produce 3 raciones de alimento por ciclo diario.",
+      "level2": "Produce 6 raciones y recupera agua por condensación.",
+      "level3": "Producción automatizada: 10 raciones diarias y suplementos medicinales."
+    }
+  },
+  {
+    "id": "clinic",
+    "name": "Enfermería y Descontaminación",
+    "icon": "🏥",
+    "category": "medical",
+    "description": "Lava ceniza alcalina de los ojos, trata broncoespasmos y estabiliza a heridos de expediciones.",
+    "level": 1,
+    "maxLevel": 3,
+    "upgradeCost": { "materials": 20, "medical_supplies": 8 },
+    "workersMax": 2,
+    "effects": {
+      "level1": "Cura 20 de salud diaria por paciente usando 1 suministro médico.",
+      "level2": "Reduce el estrés respiratorio un 50% más rápido; cama de cuidados intensivos.",
+      "level3": "Cirugía de emergencia: evita la muerte permanente si el habitante llega moribundo."
+    }
+  },
+  {
+    "id": "workshop",
+    "name": "Taller de Filtrado y Máscaras",
+    "icon": "🛠️",
+    "category": "crafting",
+    "description": "Fabrica respiradores con carbón activado, refuerza trajes y refina herramientas de expedición.",
+    "level": 1,
+    "maxLevel": 3,
+    "upgradeCost": { "materials": 30, "fuel": 15 },
+    "workersMax": 2,
+    "effects": {
+      "level1": "Permite fabricar nuevos filtros de aire con materiales y combustible.",
+      "level2": "Crea máscaras de neopreno reforzado que protegen en expediciones graves.",
+      "level3": "Refuerza la integridad estructural del búnker contra terremotos y lahares."
+    }
+  }
+]
